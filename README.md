@@ -104,8 +104,31 @@ class MainViewModel : ViewModel() {
 
 ```
 
-Available routes
-================
+
+
+Custom Routes
+=============
+
+You can easily add your own custom routes by extending the abstract Route class
+and implementing the runOn funs
+
+```kotlin
+abstract class Route {
+    open fun runOn(runner: Fragment) {
+        runner.activity?.let { activity ->
+            runOn(activity)
+        }
+
+    }
+
+    abstract fun runOn(runner: FragmentActivity)
+}
+```
+
+
+
+Ready to use routes
+===================
 
 ```kotlin
    /*
