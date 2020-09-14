@@ -35,7 +35,7 @@ Add to app level `build.gradle`
 ```Groovy
     dependencies {
 
-        implementation 'com.github.abanoubmilad:router:0.1'
+        implementation 'com.github.abanoubmilad:router:0.2'
         
     }
 ```
@@ -44,40 +44,62 @@ How to use
 ==========
 
 ```kotlin
-class CustomActivity : Activity {
-  
-    private val viewModel: CustomViewModel by viewModels()
+class MainActivity : AppCompatActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.example_activity)
-        
+        setContentView(R.layout.activity_main)
+
         /*
-        *   listen to router
-        */
+         *   listen to router
+         */
         listenToRouter(viewModel.router)
 
         /*
-        *   handle click event 
+        *   handle click event
         *   or use data binding
         */
-        btn_website.setOnClickListener{
-            viewModel.onWebsiteClicked()
+
+        btn_github_chrome_tab.setOnClickListener {
+            viewModel.onGithubChromeTabClicked()
+        }
+
+        btn_github_uri.setOnClickListener {
+            viewModel.onGithubUriClicked()
+        }
+
+        btn_play_store.setOnClickListener {
+            viewModel.onPlayStoreClicked()
         }
     }
 }
 
-class CustomViewModel : ViewModel {
-
+class MainViewModel : ViewModel() {
     val router = Router()
-    
-    fun onWebsiteClicked(){
+
+
+    fun onGithubChromeTabClicked() {
         /*
         *   create a route to start a chrome tab
         */
         router.routeTo(ChromeTabRoute("https://github.com/abanoubmilad"))
     }
-  
+
+    fun onGithubUriClicked() {
+        /*
+        *   create a route to view uri
+        */
+        router.routeTo(UriRoute("https://github.com/abanoubmilad"))
+    }
+
+    fun onPlayStoreClicked() {
+        /*
+        *   create a route to view an app on play store
+        */
+        router.routeTo(PlayStoreRoute("abanoubm.dayra"))
+    }
 }
 
 ```
