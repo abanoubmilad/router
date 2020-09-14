@@ -1,4 +1,4 @@
-package org.abanoubmilad.router.route
+package org.abanoubmilad.router.routes
 
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment

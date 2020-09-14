@@ -1,5 +1,6 @@
 package org.abanoubmilad.router
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -24,21 +25,39 @@ fun Fragment.listenToRouter(router: Router) {
 fun Context?.startChromeTab(url: String?) {
     if (this == null || url.isNullOrBlank())
         return
-    CustomTabsIntent.Builder()
-        .setToolbarColor(
-            ContextCompat.getColor(
-                this,
-                R.color.colorAccent
+    try {
+        CustomTabsIntent.Builder()
+            .setToolbarColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.colorAccent
+                )
             )
-        )
-        .addDefaultShareMenuItem().setShowTitle(true)
-        .build().launchUrl(this, Uri.parse(url))
+            .addDefaultShareMenuItem().setShowTitle(true)
+            .build().launchUrl(this, Uri.parse(url))
+    } catch (e: ActivityNotFoundException) {
+        startActivityOfUri(url)
+    }
 }
 
 fun Fragment.startChromeTab(url: String?) {
     context?.startChromeTab(url)
 }
 
+
+fun Context.startActivityOfUri(url: String?, onActivityNotFound: (() -> Unit)? = null) {
+    if (url.isNullOrBlank()) return
+    try {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(url)
+            )
+        )
+    } catch (_: ActivityNotFoundException) {
+        onActivityNotFound?.invoke()
+    }
+}
 
 fun Intent.addActivitiesPurgeFlags() {
     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

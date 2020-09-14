@@ -1,4 +1,4 @@
-package org.abanoubmilad.router.route
+package org.abanoubmilad.router.routes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,21 +10,16 @@ class NavFragmentRoute<T : Fragment>(
     fragmentClass: Class<T>,
     bundleSetter: ((Bundle) -> Unit)? = null
 ) : FragmentRoute<T>(fragmentClass, bundleSetter) {
-    override fun runOn(runner: Fragment) {
-        runner.activity?.let { activity ->
-            runOn(activity)
-        }
-    }
 
     override fun runOn(runner: FragmentActivity) {
-        val fragment = buildFragment()
-        if (navTabIndex == null)
-            (runner as? INav)?.navigate(fragment, buildBundle())
-        else
+        if (navTabIndex == null) {
+            (runner as? INav)?.navigate(buildFragment(), buildBundle())
+        } else {
             (runner as? INav)?.navigate(
                 navTabIndex,
-                fragmentToPush = fragment,
+                fragmentToPush = buildFragment(),
                 bundle = buildBundle()
             )
+        }
     }
 }
