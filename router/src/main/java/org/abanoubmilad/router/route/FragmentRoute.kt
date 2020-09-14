@@ -1,0 +1,39 @@
+package org.abanoubmilad.router.route
+
+import android.os.Bundle
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+
+open class FragmentRoute<T : Fragment>(
+    private val fragmentClass: Class<T>,
+    private val bundleSetter: ((Bundle) -> Unit)? = null
+) : Route() {
+
+    fun buildFragment(): Fragment = fragmentClass.newInstance()
+    fun buildBundle(): Bundle? {
+        if (bundleSetter == null) return null
+        val bundle = Bundle()
+        bundleSetter.invoke(bundle)
+        return bundle
+    }
+
+
+    override fun runOn(runner: Fragment) {
+        val fragment = buildFragment()
+        fragment.arguments = buildBundle()
+        when (fragment) {
+            is DialogFragment -> fragment.show(runner.childFragmentManager, null)
+        }
+
+    }
+
+    override fun runOn(runner: FragmentActivity) {
+        val fragment = buildFragment()
+        fragment.arguments = buildBundle()
+        when (fragment) {
+            is DialogFragment -> fragment.show(runner.supportFragmentManager, null)
+        }
+
+    }
+}
