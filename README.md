@@ -171,12 +171,12 @@ class ActivityRoute(
 
    /*
     *   starts an activity for result specified by its class
-    *   code: the required request code
+    *   requestCode: the required request code
     *   intentSetter: sets any flags or data to the intent
     *
     */
 class ActivityForResultRoute(
-    private val code: Int, activityClass: Class<*>,
+    private val requestCode: Int, activityClass: Class<*>,
     intentSetter: ((Intent) -> Unit)? = null
 )
 
@@ -191,6 +191,27 @@ open class FragmentRoute<T : Fragment>(
     private val bundleSetter: ((Bundle) -> Unit)? = null
 )
 
+  /*
+    *   finishes the current activity
+    *
+    */
+class DismissActivityRoute : Route() {
+    override fun runOn(runner: FragmentActivity) {
+        runner.finish()
+    }
+}
+
+  /*
+    *   finishes the current activity
+    *   and sets the activity result
+    *   resultCode : Standard activity result default is RESULT_OK operation succeeded
+    *   intentSetter: sets any result data to the intent
+    * 
+    */
+class DismissActivityForResultRoute(
+    private val resultCode: Int = Activity.RESULT_OK,
+    private val intentSetter: ((Intent) -> Unit)? = null
+) 
   
   
   
@@ -218,8 +239,7 @@ class NavTabRoute(
 
     /*
     *   for the current navigation tab
-    *   dismiss the current fragment and 
-    *   push the fragment specified by its class into navigation tab
+    *   dismiss the current fragment 
     *   bundleSetter: sets any data to the bundle
     *
     */   
@@ -249,7 +269,7 @@ class NavFragmentRoute<T : Fragment>(
     *   bundleSetter: sets any data to the bundle
     *
     */   
-class NavDismissFragmentRoute<T : Fragment>(
+class NavFragmentDismissRoute<T : Fragment>(
     fragmentClass: Class<T>,
     bundleSetter: ((Bundle) -> Unit)? = null
 )

@@ -5,19 +5,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 
 class ActivityForResultRoute(
-    private val code: Int, activityClass: Class<*>,
+    private val requestCode: Int, activityClass: Class<*>,
     intentSetter: ((Intent) -> Unit)? = null
 ) : ActivityRoute(activityClass, intentSetter) {
 
     // (IMPORTANT) let the fragment start the activity for result
     override fun runOn(runner: Fragment) {
         runner.activity?.let {
-            runner.startActivityForResult(createIntent(it), code)
+            runner.startActivityForResult(createIntent(it), requestCode)
         }
     }
 
     override fun runOn(runner: FragmentActivity) {
-        runner.startActivityForResult(createIntent(runner), code)
+        runner.startActivityForResult(createIntent(runner), requestCode)
     }
 }
 

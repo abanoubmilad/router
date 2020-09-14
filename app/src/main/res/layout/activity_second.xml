@@ -3,12 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".SecondActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is the second activity" />
+        android:text="This is the second activity"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/btn_finish_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="finish activity" />
+
+    <Button
+        android:id="@+id/btn_finish_activity_with_result_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:text="finish activity with result ok" />
+
+    <Button
+        android:id="@+id/btn_finish_activity_with_result_canceled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:text="finish activity with result cancel" />
 </LinearLayout>

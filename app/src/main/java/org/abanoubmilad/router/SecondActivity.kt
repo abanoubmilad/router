@@ -3,6 +3,7 @@ package org.abanoubmilad.router
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_second.*
 
 class SecondActivity : AppCompatActivity() {
 
@@ -21,5 +22,15 @@ class SecondActivity : AppCompatActivity() {
         *   handle click event
         *   or use data binding
         */
+        btn_finish_activity.setOnClickListener {
+            viewModel.onFinishActivityClicked()
+        }
+
+        btn_finish_activity_with_result_ok.setOnClickListener {
+            viewModel.onFinishActivityWithResultOkClicked()
+        }
+        btn_finish_activity_with_result_canceled.setOnClickListener {
+            viewModel.onFinishActivityWithResultCanceledClicked()
+        }
     }
 }

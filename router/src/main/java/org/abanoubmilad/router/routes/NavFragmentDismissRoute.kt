@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import org.abanoubmilad.labyrinth.INavHolder
 
-class NavDismissFragmentRoute<T : Fragment>(
+class NavFragmentDismissRoute<T : Fragment>(
     fragmentClass: Class<T>,
     bundleSetter: ((Bundle) -> Unit)? = null
 ) : FragmentRoute<T>(fragmentClass, bundleSetter) {
