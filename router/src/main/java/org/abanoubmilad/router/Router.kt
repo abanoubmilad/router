@@ -6,12 +6,12 @@ import org.abanoubmilad.router.routes.Route
 
 class Router {
 
-    private val _router =
+    private val _route =
         SingleLiveEvent<Route>()
-    val router: LiveData<Route> = _router
+    val route: LiveData<Route> = _route
 
     fun routeTo(route: Route) {
-        _router.value = route
+        _route.value = route
     }
 }
 

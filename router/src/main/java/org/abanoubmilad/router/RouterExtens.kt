@@ -11,13 +11,13 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 
 fun FragmentActivity.listenToRouter(router: Router) {
-    router.router.observe(this, Observer {
+    router.route.observe(this, Observer {
         it.runOn(this)
     })
 }
 
 fun Fragment.listenToRouter(router: Router) {
-    router.router.observe(viewLifecycleOwner, Observer {
+    router.route.observe(viewLifecycleOwner, Observer {
         it.runOn(this)
     })
 }
