@@ -34,5 +34,9 @@ class MainActivity : AppCompatActivity() {
         btn_play_store.setOnClickListener {
             viewModel.onPlayStoreClicked()
         }
+
+        btn_open_activity.setOnClickListener {
+            viewModel.onOpenActivityClicked()
+        }
     }
 }
