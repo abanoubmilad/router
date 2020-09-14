@@ -1,7 +1,7 @@
 package org.abanoubmilad.router.routes
 
 import androidx.fragment.app.FragmentActivity
-import org.abanoubmilad.labyrinth.INav
+import org.abanoubmilad.labyrinth.INavHolder
 
 // bottom nav tab
 class NavTabRoute(
@@ -10,9 +10,9 @@ class NavTabRoute(
 ) : Route() {
     override fun runOn(runner: FragmentActivity) {
         if (clearAllTop == null) {
-            (runner as? INav)?.navigate(navTabIndex)
+            (runner as? INavHolder)?.getINav()?.navigate(navTabIndex)
         } else {
-            (runner as? INav)?.navigate(navTabIndex, clearAllTop = clearAllTop)
+            (runner as? INavHolder)?.getINav()?.navigate(navTabIndex, clearAllTop = clearAllTop)
         }
     }
 }
