@@ -35,7 +35,7 @@ Add to app level `build.gradle`
 ```Groovy
     dependencies {
 
-        implementation 'com.github.abanoubmilad:router:0.4'
+        implementation 'com.github.abanoubmilad:router:0.5'
         
     }
 ```
