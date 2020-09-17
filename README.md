@@ -35,7 +35,7 @@ Add to app level `build.gradle`
 ```Groovy
     dependencies {
 
-        implementation 'com.github.abanoubmilad:router:0.2'
+        implementation 'com.github.abanoubmilad:router:0.3'
         
     }
 ```
@@ -212,19 +212,18 @@ class DismissActivityForResultRoute(
     private val resultCode: Int = Activity.RESULT_OK,
     private val intentSetter: ((Intent) -> Unit)? = null
 ) 
+```
   
-  
-  
-    /*
-    *   Labyrinth routes
-    *   these routes take effect only if the activity is implements the INavHolder
-    *   For more info check [@Github](https://github.com/abanoubmilad/Labyrinth) 
-    *
-    */
+
+Labyrinth routes
+===================
+
+these routes take effect only if the activity is implements the INavHolder
+For more info check [@Github](https://github.com/abanoubmilad/Labyrinth)
     
   
   
-  
+```kotlin
     /*
     *   nav to a specific bottom navigation tab
     *   navTabIndex: tab index 0-indexed

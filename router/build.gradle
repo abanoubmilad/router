@@ -8,7 +8,6 @@ apply plugin: 'maven-publish'
 
 def libraryGroupId = 'com.github.abanoubmilad'
 def libraryArtifactId = 'router'
-def libraryVersion = '0.2'
 
 android {
     compileSdkVersion 30
@@ -54,7 +53,7 @@ dependencies {
 
 
     implementation 'androidx.browser:browser:1.2.0'
-    api('com.github.abanoubmilad:labyrinth:0.2')
+    api('com.github.abanoubmilad:labyrinth:0.3')
 
 }
 
