@@ -53,7 +53,7 @@ dependencies {
 
 
     implementation 'androidx.browser:browser:1.2.0'
-    api('com.github.abanoubmilad:labyrinth:0.3')
+    api('com.github.abanoubmilad:labyrinth:0.4')
 
 }
 
