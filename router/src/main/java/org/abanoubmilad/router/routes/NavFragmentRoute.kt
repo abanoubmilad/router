@@ -25,6 +25,12 @@ class NavFragmentRoute<T : Fragment>(
     bundleSetter: ((Bundle) -> Unit)? = null
 ) : FragmentRoute<T>(fragmentClass, bundleSetter) {
 
+    override fun runOn(runner: Fragment) {
+        runner.activity?.let { activity ->
+            runOn(activity)
+        }
+    }
+
     override fun runOn(runner: FragmentActivity) {
         if (navTabIndex == null) {
             (runner as? INavHolder)?.getINav()?.navigate(buildFragment(), buildBundle())
